@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@langchain/core": "^0.3.42",
+    "@langchain/google-genai": "^0.1.10",
+    "discord.js": "^14.18.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.1"
+  },
+  "scripts": {
+    "start": "npm run build && node ./bundle.js",
+    "build": "esbuild index.mjs --bundle --outfile=bundle.js --platform=node --format=cjs"
+  },
+  "license": "ISC"
+}
