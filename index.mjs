@@ -46,8 +46,12 @@ client.on('messageCreate', async (message) => {
         return;
       }
 
-      // 受け取った応答をDiscordに送信
-      await message.reply(geminiResponse);
+      // Geminiのレスポンスを1750文字ごとに分割してDiscordに送信
+      const chunkSize = 1750;
+      for (let i = 0; i < geminiResponse.length; i += chunkSize) {
+        const chunk = geminiResponse.substring(i, i + chunkSize);
+        await message.reply(chunk);
+      }
     } catch (error) {
       console.error('Error interacting with Gemini or Discord API:', error);
       await message.reply('うーん、何かエラーが発生したみたい...');
